@@ -83,5 +83,4 @@ cmd.filetype('plugin', 'indent', 'on')
 cmd.packadd('cfilter') 
 
 -- load lazy.nvim
--- require("config.lazy")
-
+require("config.lazy")
