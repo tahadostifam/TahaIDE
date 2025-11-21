@@ -11,27 +11,27 @@ return {
         "folke/tokyonight.nvim",
         lazy = false,
         config = function()
-        require("tokyonight").setup({
-            style = "night",
-            transparent = false,
-            terminal_colors = true,
-            styles = {
-                comments = { italic = true },
-                keywords = { italic = true },
-                functions = { bold = true },
-                variables = {},
-            },
-            on_colors = function(colors)
-                colors.bg = "#000000"
-            end,
-            on_highlights = function(hl, c)
-                hl.CursorLine = { bg = "#6b6a6a", bold = true }
-                hl.CursorLineNr = { fg = "#29bd04", bold = true }
-                hl.LineNr = { fg = "#6b6a6a" }
-                hl.Visual = { bg = "#404040" }
-            end,
-        })
-        vim.cmd("colorscheme tokyonight")
+            require("tokyonight").setup({
+                style = "night",
+                transparent = false,
+                terminal_colors = true,
+                styles = {
+                    comments = { italic = true },
+                    keywords = { italic = true },
+                    functions = { bold = true },
+                    variables = {},
+                },
+                on_colors = function(colors)
+                    colors.bg = "#000000"
+                end,
+                on_highlights = function(hl, c)
+                    hl.CursorLine = { bg = "#6b6a6a", bold = true }
+                    hl.CursorLineNr = { fg = "#29bd04", bold = true }
+                    hl.LineNr = { fg = "#6b6a6a" }
+                    hl.Visual = { bg = "#404040" }
+                end,
+            })
+            vim.cmd("colorscheme tokyonight")
         end,
     },
     {
@@ -40,7 +40,7 @@ return {
         require("lualine").setup({
             options = {
                 icons_enabled = true,
-                theme = "16color",
+                theme = "tokyonight"
             },
             sections = {
                 lualine_a = {
@@ -64,20 +64,26 @@ return {
                     side = "left",
                 },
                 renderer = {
-                highlight_opened_files = "all",
-                icons = {
-                    show = {
-                        git = true,
-                        folder = true,
-                        file = true,
+                    highlight_opened_files = "all",
+                    icons = {
+                        show = {
+                            git = true,
+                            folder = true,
+                            file = true,
+                        },
                     },
                 },
-                },
                 filters = {
-                dotfiles = false,
+                    dotfiles = false,
                 },
             })
+
             vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+
+            vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeVertSplit", { bg = "none", fg = "#000000" })
         end,
-    },
+    }
 }
